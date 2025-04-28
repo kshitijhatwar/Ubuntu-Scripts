@@ -2,6 +2,9 @@ Find:
 \;                                 → find runs the command once for each file found.                                #find /var/log -type f -name "*.log" -exec cp {} /tmp/logbackup/ \;
 +                                  → find runs the command once for all matching files at once.                     #find /path/to/folder -type f -exec du -h {} + | sort -h | tail -n 5
 -exec                              >run a custom command for every found file                                       #find /path/to/folder -type f -exec du -h {} + | sort -h | tail -n 5
+-mtime n                           >Find files modified exactly n days ago.                                         #find /etc -mtime 7
+-mtime +n                          >Find files modified more than n days ago.                                       #find /etc -mitme +7
+-mtime -n                          >Find files modified less than n days ago.                                       #find /etc -mtime -7
 
 -------------------------------------------------------------------------------------------------------------------
 awk: Process and extract fields (columns) from text.
