@@ -5,7 +5,7 @@
 cp /var/log/*.log /tmp/logbackup
 
 #Finds and copies .log files from /var/log and its subdirectories too.
-find /var/log -mtype f -name "*.log" -exec cp {} /tmp/logbackup/ \;
+find /var/log -type f -name "*.log" -exec cp {} /tmp/logbackup/ \;
 
 
 
