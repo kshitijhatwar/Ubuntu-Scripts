@@ -8,7 +8,7 @@ Find:
 
 -------------------------------------------------------------------------------------------------------------------
 awk: Process and extract fields (columns) from text.
--F                                 >Set custom field separator                                                      #awk -F':' '{print $1}' /etc/passwd (Print first field separated by :)
+-F                                 >Set custom field separator                                                      #awk -F: '$3 > 1000 { print $1 }' /etc/passwd (prints user ID from /etc/passwd whose user ID is more than 1000)
 '{print $n}'                       > Print specific column                                                          #awk '{print $2}' file.txt
 /pattern/ {actiion}                > Match pattern and act                                                          #awk '/error/ {print $0}' logfile.txt
 NR                                 > Print lines                                                                    #awk 'NR==n-1 || NR==n' n=$(wc -l < filename) filename
