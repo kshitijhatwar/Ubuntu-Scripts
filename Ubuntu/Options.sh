@@ -5,6 +5,9 @@ Find:
 -mtime n                           >Find files modified exactly n days ago.                                         #find /etc -mtime 7
 -mtime +n                          >Find files modified more than n days ago.                                       #find /etc -mitme +7
 -mtime -n                          >Find files modified less than n days ago.                                       #find /etc -mtime -7
+-name                              >Find files with provided file name
+-type f                            >Find only files                                                                 #find /etc -type f
+-type d                            >Find only directories                                                           #find /etc -type d
 
 -------------------------------------------------------------------------------------------------------------------
 awk: Process and extract fields (columns) from text.
