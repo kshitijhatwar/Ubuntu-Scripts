@@ -1,0 +1,12 @@
+---
+- name: playbook that sets up a cron job using the cron module
+  hosts: all
+  remote_user: khatwar
+  become: true
+  tasks:
+    - name:  run script daily at 2 am
+      ansible.builtin.cron:
+        name: cron job
+        minute: "0"
+        hour: "2"
+        job: echo "helo"
