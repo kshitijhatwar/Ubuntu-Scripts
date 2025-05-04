@@ -1,5 +1,5 @@
 ---
-- name: playbook that fetches and stores the output of a command on a remote host (use register)
+- name: Playbook that fetches and stores the output of a command on a remote host (use register)
   hosts: all
   remote_user: khatwar
   become: true
