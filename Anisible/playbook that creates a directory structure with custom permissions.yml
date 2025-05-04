@@ -1,10 +1,10 @@
 ---
-- name: playbook that creates a directory structure with custom permissions
+- name: Playbook that creates a directory structure with custom permissions
   hosts: all
   remote_user: khatwar
   become: true
   tasks:
-    - name: create a directory structure with custom permissions
+    - name: Create a directory structure with custom permissions
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: directory
