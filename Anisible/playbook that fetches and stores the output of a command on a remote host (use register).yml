@@ -1,0 +1,23 @@
+---
+- name: playbook that fetches and stores the output of a command on a remote host (use register)
+  hosts: all
+  remote_user: khatwar
+  become: true
+  tasks:
+    - name: run command
+      ansible.builtin.command: df -h
+      register: output
+
+    - name: save command output to remote server
+      ansible.builtin.copy:
+        content: "{{ output.stdout }}"
+        dest: 'var/tmp/output.txt'
+        owner: khatwar
+        group: khatwar
+        mode: '0655'
+
+    - name: fetch outpuut file from remote server
+      ansible.builtin.fetch:
+        src: '/var/tmp/output.txt'
+        dest: '/home/ubuntu/'
+        flat: yes

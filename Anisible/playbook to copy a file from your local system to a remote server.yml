@@ -1,0 +1,21 @@
+---
+- name: playbook to copy a file from your local system to a remote server
+  hosts: all
+  remote_user: khatwar
+  become: true
+  tasks: 
+    - name: copy a file from your local system to a remote server
+      ansible.builtin.copy:
+        src: /home/ubuntu/playbook.yml
+        dest: /home/khatwar/
+        owner: khatwar
+        group: khatwar
+        mode: '0600'
+
+    - name: copy a directory from your local system to a remote server
+      ansible.builtin.copy:
+        src: /home/ubuntu/playbooks/
+        dest: /home/khatwar/playbooks/
+        owner: khatwar
+        group: khatwar
+        mode: '0755'

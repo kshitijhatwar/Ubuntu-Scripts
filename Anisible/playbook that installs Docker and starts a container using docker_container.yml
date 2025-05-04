@@ -1,0 +1,24 @@
+---
+- name: playbook that installs Docker and starts a container using docker_container
+  hosts: all
+  remote_user: khatwar
+  become: true
+  tasks:
+    - name: install docker
+      ansible.builtin.apt:
+        name: docker.io
+        state: present
+
+    - name: add user to docker group
+      ansible.builtin.user:
+        name: khatwar
+        groups: docker
+        append: yes
+    
+    - name: start a container using docker_container
+      community.docker.docker_container:
+        name: apache_container
+        image: httpd:latest
+        state: present
+        published_ports:
+          - "80:80"

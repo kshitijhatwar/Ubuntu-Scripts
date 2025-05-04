@@ -1,0 +1,17 @@
+---
+- name: playbook to install Apache or Nginx on a remote server
+  hosts:
+  remote_user: khatwar
+  become: true
+  tasks:
+    - name: Install Apache
+      ansible.buitlin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: start apache service
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: true

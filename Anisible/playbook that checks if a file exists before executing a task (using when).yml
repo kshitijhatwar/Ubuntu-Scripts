@@ -1,0 +1,14 @@
+---
+- name: playbook that checks if a file exists before executing a task (using when)
+  hosts: all
+  remote_user: khatwar
+  become: true
+  tasks:
+    - name: checks if a file exists
+      ansible.builtin.stat:
+        path: '/home/khatwar/configfile.txt'
+      register: file_check
+
+    - name: executing a task only when above file exists
+      ansible.builtin.command: echo "file is present"
+      when: file_check.stat.exists
