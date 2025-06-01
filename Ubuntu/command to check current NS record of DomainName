@@ -2,12 +2,12 @@
 dig +short NS kshitijhatwar.xyz | sort
 
 #command to check NS record from your Google DNS server:
-dig +short NS kshitijhatwar.xyz@8.8.8.8 | sort
+dig +short NS @8.8.8.8 kshitijhatwar.xyz | sort
 
 
 
 
-#script to verify your NS changed or not:
+#script to continously verify your NS changed or not:
 
 expected_output=$(cat <<EOF
 ns-1196.awsdns-21.org.
