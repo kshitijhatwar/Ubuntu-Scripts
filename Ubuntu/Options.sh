@@ -71,4 +71,6 @@ uniq: Filter out repeated lines.
 
 
 ------------------------------------------------------------------------------------------------------------------------------
+if loop.
+diff                       >Differentiates between two files (works for multi string)                        #if diff <(echo "$output") <(echo "$expected_output") >/dev/null; then
 
