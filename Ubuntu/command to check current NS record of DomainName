@@ -1,0 +1,32 @@
+#command to check NS record from your DNS server:
+dig +short NS kshitijhatwar.xyz | sort
+
+#command to check NS record from your Google DNS server:
+dig +short NS kshitijhatwar.xyz@8.8.8.8 | sort
+
+
+
+
+#script to verify your NS changed or not:
+
+expected_output=$(cat <<EOF
+ns-1196.awsdns-21.org.
+ns-1954.awsdns-52.co.uk.
+ns-335.awsdns-41.com.
+ns-976.awsdns-58.net.
+EOF
+)
+
+while true; do
+    output=$(dig +short NS kshitijhatwar.xyz | sort)
+
+    if diff <(echo "$output") <(echo "$expected_output") >/dev/null; then    #creates temp files of output and expectedoutput and differenciate in them throws output to /dev/null we only care about exit code0.
+        echo "Expected NS records propagated!"
+        echo "$output"
+        break
+    fi
+
+    echo "Waiting for expected NS records to propagate..."
+    echo "$output"
+    sleep 10
+done
