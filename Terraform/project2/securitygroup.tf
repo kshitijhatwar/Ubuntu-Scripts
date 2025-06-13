@@ -1,0 +1,25 @@
+resource "aws_security_group" "example_sg" {
+  name        = "example-security-group"
+  description = "Security Group with custom ingress and egress rules"
+
+  ingress {
+    protocol  = "tcp"
+    self      = true
+    from_port = 80
+    to_port   = 80
+  }
+
+  ingress {
+    protocol  = "tcp"
+    self      = true
+    from_port = 22
+    to_port   = 22
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
