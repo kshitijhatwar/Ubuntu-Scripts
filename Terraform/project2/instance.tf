@@ -1,7 +1,7 @@
 resource "aws_instance" "web" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  key_name               = aws-key
+  key_name               = "aws-key"
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   availability_zone      = var.zone
 
@@ -14,14 +14,14 @@ resource "aws_instance" "web" {
 connection {
     type     = "ssh"
     user     = "ubuntu"
-    password = file(key.txt)
+    private_key = file("key.txt")
     host     = self.public_ip
   }
 
  provisioner "remote-exec" {
     inline = [
       "chmod +x /var/tmp/script.sh",
-      "sudo ./var/tmp/script.sh",
+      "sudo /var/tmp/script.sh",
     ]
   }
 
