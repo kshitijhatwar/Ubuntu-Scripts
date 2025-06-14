@@ -1,5 +1,5 @@
-resource "aws_security_group" "example_sg" {
-  name        = "example-security-group"
+resource "aws_security_group" "my_sg" {
+  name        = "my-security-group"
   description = "Security Group with custom ingress and egress rules"
 
   ingress {
