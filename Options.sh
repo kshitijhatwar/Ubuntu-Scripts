@@ -1,3 +1,4 @@
+####
 Find:
 \;                                 → find runs the command once for each file found.                                #find /var/log -type f -name "*.log" -exec cp {} /tmp/logbackup/ \;
 +                                  → find runs the command once for all matching files at once.                     #find /path/to/folder -type f -exec du -h {} + | sort -h | tail -n 5
