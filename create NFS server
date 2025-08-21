@@ -1,0 +1,47 @@
+### Install NFS server
+sudo apt-get update
+sudo apt-get install -y nfs-kernel-server
+
+### Create directory
+mkdir /home/kshitijh/k8-storage
+
+### Give Permmissions
+sudo chown -R nobody:nogroup /home/kshitijh/k8-storage
+sudo chmod -R 777 /home/kshitijh/k8-storage
+
+### Configure export directory
+sudo vi /etc/exports
+
+## ADD below:
+/home/kshitijh/k8-storage 10.0.2.154(rw,sync,no_subtree_check,no_root_squash)
+/home/kshitijh/k8-storage 10.0.3.142(rw,sync,no_subtree_check,no_root_squash)
+/home/kshitijh/k8-storage 10.0.3.143(rw,sync,no_subtree_check,no_root_squash)
+----------------------------------------------
+### Then apply the config
+sudo exportfs -rav
+
+## Enable and restart service
+sudo systemctl enable nfs-kernel-server
+sudo systemctl restart nfs-kernel-server
+-------------------------------------------------
+### Install NFS client (on remote servers)
+sudo apt-get install -y nfs-common
+
+## Mount NFS share
+sudo mount 10.0.3.142:/home/kshitijh/k8-storage /home/kshitijh/k8-storage
+
+## verify
+df -hT /home/kshitijh/k8-storage
+
+## Make mount permanent
+sudo vi /etc/fstab
+
+## ADD below:
+10.0.3.142:/home/kshitijh/k8-storage   /home/kshitijh/k8-storage   nfs   defaults   0 0
+
+sudo mount -a
+
+###TEst NFS Mount
+sudo mount -v -t nfs 10.0.3.143:/home/kshitijh/k8-storage /mnt
+
+
